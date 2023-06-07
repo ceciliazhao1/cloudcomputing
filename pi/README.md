@@ -59,8 +59,10 @@ Prepare code
 Build PiCalculation java file
 ```
   $ cd /hadoop-3.3.4
-  $ vi PiCalculation.java      
+  $ vi PiCalculation.java 
+```
 Compile PiCalculation.java and create a jar
+```
   $ bin/hadoop com.sun.tools.javac.Main PiCalculation.java
   $ jar cf wc.jar PiCalculation*class  
 ```
@@ -69,10 +71,14 @@ Run
 Execute
 ```
   $ bin/hadoop jar wc.jar PiCalculation /user/lchen/picalculate/input /user/czhao322/picalculate/output5
+```
 Output
+```
   $ bin/hdfs dfs -ls /user/lchen/picalculate/output5
   $ bin/hdfs dfs -cat /user/lchen/picalculate/output5/part-r-00000 
+```
 Stop
+```
   $ sbin/stop-dfs.sh
 ```
 Test Result
