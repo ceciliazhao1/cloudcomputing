@@ -1,4 +1,5 @@
-GG LINK:
+Detail Design Presentation：
+Pi_using_MapReduce
 https://docs.google.com/presentation/d/1ghCmYWVxYW82MUV4BK1IQQ3wHP1cteWLUdHM0ROYvFE/edit#slide=id.g2504991d7a9_0_236
 
 Design
