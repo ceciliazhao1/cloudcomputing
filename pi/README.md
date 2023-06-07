@@ -1,3 +1,7 @@
+Detail Design Presentation：
+Pi_using_MapReduce
+https://docs.google.com/presentation/d/1ghCmYWVxYW82MUV4BK1IQQ3wHP1cteWLUdHM0ROYvFE/edit#slide=id.g2504991d7a9_0_236
+
 Design
 
 ![image](https://user-images.githubusercontent.com/93315926/194803849-7c4c723f-81a1-48ef-b068-12dd25496823.png)
@@ -18,30 +22,31 @@ Implement
 ![image](https://user-images.githubusercontent.com/93315926/194799644-6b303972-e90e-4fc4-821b-0b26e2df9a6d.png)
 
 Prepare input data
-
+```
   $ mkdir PiCalculation
   $ cd PiCalculation
   $ vi GenerateRandomNumbers.java
   $ javac GenerateRandomNumbers.java
   $ java -cp . GenerateRandomNumbers
+```
   
 Input data will store in PiCalculationInput
 
 Setup passphraseless ssh
 
 Now check that you can ssh to the localhost without a passphrase:
-
+```
   $ cd hadoop-3.3.4/
   $ ssh localhost
-  
+```
 If you cannot ssh to localhost without a passphrase, execute the following commands:
-
+```
   $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
   $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
   $ chmod 0600 ~/.ssh/authorized_keys
-
+```
 Make the HDFS directories required to execute MapReduce jobs(Copy input data to HDFS)
-
+```
   $ cd ..
   $ cd hadoop-3.3.4/
   $ bin/hdfs namenode -format
@@ -52,25 +57,37 @@ Make the HDFS directories required to execute MapReduce jobs(Copy input data to 
   $ bin/hdfs dfs -mkdir /user/czhao322/picalculate
   $ bin/hdfs dfs -mkdir /user/czhao322/picalculate/input
   $ bin/hdfs dfs -put ../PiCalculation/PiCalculationInput /user/czhao322/picalculate/input
-  
+```  
 Prepare code
 
 Build PiCalculation java file
+```
   $ cd /hadoop-3.3.4
-  $ vi PiCalculation.java      
+  $ vi PiCalculation.java 
+```
 Compile PiCalculation.java and create a jar
+```
   $ bin/hadoop com.sun.tools.javac.Main PiCalculation.java
   $ jar cf wc.jar PiCalculation*class  
+```
 Run
 
 Execute
-  $ bin/hadoop jar wc.jar PiCalculation /user/lchen/picalculate/input /user/czhao322/picalculate/output5
+```
+  $ bin/hadoop jar wc.jar PiCalculation /user/czhao322/picalculate/input /user/czhao322/picalculate/output7
+```
 Output
-  $ bin/hdfs dfs -ls /user/lchen/picalculate/output5
-  $ bin/hdfs dfs -cat /user/lchen/picalculate/output5/part-r-00000 
+```
+  $ bin/hdfs dfs -ls /user/czhao322/picalculate/output7
+  $ bin/hdfs dfs -cat /user/czhao322/picalculate/output7/part-r-00000 
+```
 Stop
+```
   $ sbin/stop-dfs.sh
+```
 Test Result
+
+![image](https://github.com/ceciliazhao1/cloudcomputing/blob/main/pi/截屏2023-06-07%20上午10.15.41.png)
 
 Test Case:
 
