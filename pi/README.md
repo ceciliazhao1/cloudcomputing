@@ -73,7 +73,7 @@ Stop
 Test Result
 
 Test Case:
-![image]()
+![image](image.png)
 How many random numbers to generate: 1000000 Radius = 200
   
 
