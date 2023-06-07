@@ -70,12 +70,12 @@ Run
 
 Execute
 ```
-  $ bin/hadoop jar wc.jar PiCalculation /user/lchen/picalculate/input /user/czhao322/picalculate/output5
+  $ bin/hadoop jar wc.jar PiCalculation /user/czhao322/picalculate/input /user/czhao322/picalculate/output7
 ```
 Output
 ```
-  $ bin/hdfs dfs -ls /user/lchen/picalculate/output5
-  $ bin/hdfs dfs -cat /user/lchen/picalculate/output5/part-r-00000 
+  $ bin/hdfs dfs -ls /user/czhao322/picalculate/output7
+  $ bin/hdfs dfs -cat /user/czhao322/picalculate/output7/part-r-00000 
 ```
 Stop
 ```
