@@ -1,5 +1,7 @@
 Design
 
+![image](https://user-images.githubusercontent.com/93315926/194803849-7c4c723f-81a1-48ef-b068-12dd25496823.png)
+
 Step 1: Generate an input file to the Pi MapReduce program
 
 Step 1.1: Create a regular Java program which accepts two command line arguments.
@@ -12,6 +14,8 @@ Step 3: Use the file generated in Step 1.2 as the input to execute the MapReduce
 Step 4: Calculate Pi in the driver program based on the numbers of inside darts and outside darts.
 
 Implement
+
+![image](https://user-images.githubusercontent.com/93315926/194799644-6b303972-e90e-4fc4-821b-0b26e2df9a6d.png)
 
 Prepare input data
 
@@ -35,6 +39,7 @@ If you cannot ssh to localhost without a passphrase, execute the following comma
   $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
   $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
   $ chmod 0600 ~/.ssh/authorized_keys
+
 Make the HDFS directories required to execute MapReduce jobs(Copy input data to HDFS)
 
   $ cd ..
@@ -68,7 +73,7 @@ Stop
 Test Result
 
 Test Case:
-
+![image]()
 How many random numbers to generate: 1000000 Radius = 200
   
 
