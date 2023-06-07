@@ -71,7 +71,8 @@ Output
 Stop
   $ sbin/stop-dfs.sh
 Test Result
-![image](pi/截屏2023-06-07 上午10.15.41.png)
+
+![image](cloudcomputing/pi/截屏2023-06-07 上午10.15.41.png)
 
 Test Case:
 
