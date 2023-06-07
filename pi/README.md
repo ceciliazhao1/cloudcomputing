@@ -87,7 +87,7 @@ Stop
 ```
 Test Result
 
-![image](https://github.com/ceciliazhao1/cloudcomputing/blob/main/pi/截屏2023-06-07%20上午10.15.41.png)
+![image](https://github.com/ceciliazhao1/cloudcomputing/blob/main/pi/image.png)
 
 Test Case:
 
