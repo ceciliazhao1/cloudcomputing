@@ -9,12 +9,9 @@ Convert a WordCount MapReduce program into a Partial Inverted Index MapReduce pr
 In map class:
 Use getName() to get the filename.
 Also we can use algorithms to get the last digits.
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/Full%20Inverted%20Index/partialmap.png" align="left" width=30% height=30%>
 
 In reduce class:
 Use hashset to get the unique file name or index.
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/Full%20Inverted%20Index/partialreduce.png" align="left" width=30% height=30%>
-
 
 Convert a Partial Inverted Index MapReduce program into a Full Inverted Index MapReduce program
 
@@ -23,12 +20,11 @@ Use getName() to get the filename.
 Also we can use count to get the key’s index.
 Like file0: it is what it is
 It : (file0,0),(file0,3)
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/Full%20Inverted%20Index/fullmap.png" align="left" width=30% height=30%>
 
 In reduce class:
 Use list to get the file list.
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/Full%20Inverted%20Index/fullreduce.png" align="left" width=30% height=30%>
 
+Implement
 
 Step 1: Create 3 files as input files and copy into hadoop.
 
@@ -37,8 +33,6 @@ Step 2: Create a MapReduce program to get the file index.
 Step 3: Execute the MapReduce program created in Step 2.
 
 Implement
-
-![image](https://user-images.githubusercontent.com/93315926/194799644-6b303972-e90e-4fc4-821b-0b26e2df9a6d.png)
 
 Prepare input data
 ```
@@ -99,13 +93,13 @@ Output
   $ bin/hdfs dfs -ls /user/czhao322/invertedindex/output11
   $ bin/hdfs dfs -cat /user/czhao322/invertedindex/output11/part-00000
 ```
-
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/Full%20Inverted%20Index/partial.png" width=50% height =50%>
 Build full java file
 ```
   $ cd /hadoop-3.3.4
   $ vi full.java 
 ```
-Compile partial.java and create a jar
+Compile full.java and create a jar
 ```
   $ bin/hadoop com.sun.tools.javac.Main full.java
   $ jar cf wc.jar full*class  
@@ -125,6 +119,7 @@ Output
   $ bin/hdfs dfs -ls /user/czhao322/fullindex/output1
   $ bin/hdfs dfs -cat /user/czhao322/fullindex/output1/part-00000
 ```
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/Full%20Inverted%20Index/full.png" width=50% height =50%>
 Stop
 ```
   $ sbin/stop-dfs.sh
