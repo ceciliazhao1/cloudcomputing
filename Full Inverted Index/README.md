@@ -6,7 +6,6 @@ Design
 
 Convert a WordCount MapReduce program into a Partial Inverted Index MapReduce program
 <img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/Full%20Inverted%20Index/partialmap.png" width=30% height=30%>
-
 In map class:
 Use getName() to get the filename.
 Also we can use algorithms to get the last digits.
