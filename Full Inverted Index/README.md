@@ -32,7 +32,7 @@ Step 2: Create a MapReduce program to get the file index.
 
 Step 3: Execute the MapReduce program created in Step 2.
 
-Implement
+
 
 Prepare input data
 ```
