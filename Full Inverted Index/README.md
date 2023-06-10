@@ -94,6 +94,7 @@ Output
   $ bin/hdfs dfs -cat /user/czhao322/invertedindex/output11/part-00000
 ```
 <img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/Full%20Inverted%20Index/partial.png" width=50% height =50%>
+
 Build full java file
 ```
   $ cd /hadoop-3.3.4
