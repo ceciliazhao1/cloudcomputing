@@ -15,13 +15,13 @@ Use hashset to get the unique file name or index.
 
 
 Convert a Partial Inverted Index MapReduce program into a Full Inverted Index MapReduce program
-![image](https://github.com/ceciliazhao1/cloudcomputing/blob/main/Full%20Inverted%20Index/fullmap.png)
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/Full%20Inverted%20Index/fullmap.png" align="left" width=30% height=30%>
 In map class:
 Use getName() to get the filename.
 Also we can use count to get the key’s index.
 Like file0: it is what it is
 It : (file0,0),(file0,3)
-![image](https://github.com/ceciliazhao1/cloudcomputing/blob/main/Full%20Inverted%20Index/fullreduce.png)
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/Full%20Inverted%20Index/fullreduce.png" align="left" width=30% height=30%>
 In reduce class:
 Use list to get the file list.
 
