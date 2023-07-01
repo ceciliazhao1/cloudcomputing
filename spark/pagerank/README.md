@@ -98,7 +98,7 @@ For the 2nd iteration it is:
 $ spark-submit --class org.apache.spark.examples.SparkPageRank --master local[4] /home/czhao322/target/scala-2.12/pagerank-project_2.12-1.0.jar pagerank.txt 2
 ```
 
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/2.png" width=30% height =30%>
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/2.png" width=50% height =50%>
 
 
 
