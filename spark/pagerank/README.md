@@ -3,6 +3,7 @@ Detail Design Presentation：
 https://docs.google.com/presentation/d/1CGREG54TSDyRQ-znUhiAjLerNN9gaBI87cO2LgbNarM/edit?pli=1#slide=id.g2504991d7a9_0_220
 
 Design:
+
 <img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/4.png" width=30% height =30%>
 
 
