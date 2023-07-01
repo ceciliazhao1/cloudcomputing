@@ -31,7 +31,7 @@ Pyspark - using GCP dataproc and hdfs:
 1. Ssh login the dataproc cluster server.
 2. Upload a txt file to show the references among the nodes.
 
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/5.png" width=30% height =30%>
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/5.png" width=40% height =40%>
 
 3. copy the file into hdfs:///mydata
 ```
@@ -49,7 +49,7 @@ $ spark-submit --master yarn --deploy-mode cluster --py-files pagerank.py pagera
 $  hdfs dfs -cat hdfs:///mydata/output/1/*
 ```
 
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/7.png" width=30% height =30%>
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/7.png" width=50% height =50%>
 
 For the 2nd iteration it is:
 ```
@@ -57,7 +57,7 @@ $ spark-submit --master yarn --deploy-mode cluster --py-files pagerank.py pagera
 $ hdfs dfs -cat hdfs:///mydata/output/2/*
 ```
 
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/6.png" width=30% height =30%>
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/6.png" width=50% height =50%>
 
 
 Scala-Using dataproc and hdfs:
@@ -70,7 +70,7 @@ using the Scala REPL (Read-Evaluate-Print-Loop or interactive interpreter)
 
 4. Create directory structure:
 
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/3.png" width=30% height =30%>
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/3.png" width=50% height =50%>
 
 5. Compile:
 ```
@@ -89,7 +89,7 @@ For the 1st iteration it is:
 $ spark-submit --class org.apache.spark.examples.SparkPageRank --master local[4] /home/czhao322/target/scala-2.12/pagerank-project_2.12-1.0.jar pagerank.txt 1
 ```
 
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/8.png" width=30% height =30%>
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/8.png" width=50% height =50%>
 
 For the 2nd iteration it is:
 ```
