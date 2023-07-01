@@ -6,12 +6,6 @@ Design:
 
 <img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/4.png" width=30% height =30%>
 
-
-An iterative algorithm that performs many joins, so it is a good use case for RDD partitioning.
-The algorithm maintains two datasets:
-(pageID, linkList) elements containing the list of neighbors of each page,
-(pageID, rank) elements containing the current rank for each page.
-
 Initialize each page’s rank to 1.0
 On each iteration, have page p send a contribution of rank(p) / numNeighbors(p) to its neighbors (the pages it has links to).
 Set each page’s rank to 0.15 + 0.85 * contributionsReceived.
