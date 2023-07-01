@@ -14,6 +14,8 @@ Note:
 
 Calculation:
 
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/10.png" width=30% height =30%>
+
 First iteration
 ```
 PR(A)=(1-d)+d *PR(C)=1-0.85+0.85*1=1
@@ -89,14 +91,14 @@ For the 1st iteration it is:
 $ spark-submit --class org.apache.spark.examples.SparkPageRank --master local[4] /home/czhao322/target/scala-2.12/pagerank-project_2.12-1.0.jar pagerank.txt 1
 ```
 
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/8.png" width=50% height =50%>
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/1.png" width=50% height =50%>
 
 For the 2nd iteration it is:
 ```
 $ spark-submit --class org.apache.spark.examples.SparkPageRank --master local[4] /home/czhao322/target/scala-2.12/pagerank-project_2.12-1.0.jar pagerank.txt 2
 ```
 
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/9.png" width=30% height =30%>
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/2.png" width=30% height =30%>
 
 
 
