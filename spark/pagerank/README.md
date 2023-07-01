@@ -80,9 +80,9 @@ $ sbt package
 ```
 6. Download spark
 
-7. Put pageranktxt.txt file into hdfs:
+7. Put pagerank.txt file into hdfs:
 ```
-$ hdfs dfs -put pageranktxt.txt /user/czhao322
+$ hdfs dfs -put pagerank.txt /user/czhao322
 $ hdfs dfs -ls
 ```
 8. Run:
