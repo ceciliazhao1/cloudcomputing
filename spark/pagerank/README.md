@@ -21,13 +21,17 @@ Note:
 Calculation:
 
 First iteration
+```
 PR(A)=(1-d)+d *PR(C)=1-0.85+0.85*1=1
 PR(B)=(1-d)+d *PR(A)/2=1-0.85+0.85*1/2=0.575
 PR(C)=(1-d)+d *(PR(A)/2+PR(B))=1-0.85+0.85*(1/2+1)=1.425
+```
 Second iteration
+```
 PR(A)=(1-d)+d *PR(C)=1-0.85+0.85*1.425=1.36125
 PR(B)=(1-d)+d *PR(A)/2=1-0.85+0.85*1/2=0.575
 PR(C)=(1-d)+d *(PR(A)/2+PR(B))=1-0.85+0.85*(1/2+0.575)=1.06375
+```
 
 Pyspark - using GCP dataproc and hdfs:
 PySpark-Upload file:
