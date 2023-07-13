@@ -54,7 +54,8 @@ kubectl apply -f spark-pvc.yaml
 
 5. Create and prepare your application JAR file
 ```
-kubectl apply -f spark-pvc.yaml
+docker run -v /tmp:/tmp -it bitnami/spark find /opt/bitnami/spark/examples/jars/ -name
+ "spark-examples*" -exec cp {} /tmp/my.jar \;
 ```
 
 6. Add a test file with a line of words that we will be using later for the word count test
@@ -114,7 +115,8 @@ Submit a word count task :
 ```
 kubectl run --namespace default spark-client --rm --tty -i --restart=Never \
   --image=docker.io/bitnami/spark:3.4.1-debian-11-r0 \
-  -- spark-submit --master spark://34.31.125.126:7077 --deploy-mode cluster \
+  -- spark-submit --master spark://34.31.125.126:7077 \
+  --deploy-mode cluster \
   --class org.apache.spark.examples.JavaWordCount \
   /data/my.jar /data/test.txt
 ```
