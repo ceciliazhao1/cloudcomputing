@@ -32,7 +32,84 @@ gcloud container clusters create spark --num-nodes=1 --machine-type=e2-highmem-2
 ```
 <img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/kubernetes/img/4.png" width=70% height =70%>
 
-2. Word Count on Spark
+2. Install the NFS Server Provisioner
+```
+helm repo add stable https://charts.helm.sh/stable
+helm repo update
+```
+
+3. Install the NFS Server Provisioner
+```
+helm install nfs stable/nfs-server-provisioner \
+set persistence.enabled=true,persistence.size=5Gi
+```
+
+4. Create a persistent disk volume and a pod to use NFS spark-pvc.yaml
+Apply the above yaml descriptor
+```
+vim spark-pvc.yaml 
+cat spark-pvc.yaml 
+kubectl apply -f spark-pvc.yaml
+```
+
+5. Create and prepare your application JAR file
+```
+kubectl apply -f spark-pvc.yaml
+```
+
+6. Add a test file with a line of words that we will be using later for the word count test
+```
+echo "how much wood could a woodpecker chuck if a woodpecker could   chuck wood" > /tmp/test.txt
+```
+
+7. Copy the JAR file containing the application, and any other required files, to the PVC using the mount point
+Make sure the files a inside the persistent volume
+```
+kubectl cp /tmp/my.jar spark-data-pod:/data/my.jar
+kubectl cp /tmp/test.txt spark-data-pod:/data/test.txt
+kubectl exec -it spark-data-pod -- ls -al /data
+```
+
+8. Deploy Apache Spark on Kubernetes using the shared volume spark-chart.yaml
+```
+vim spark-chart.yaml 
+cat spark-chart.yaml 
+```
+
+9. Check the pods is running:
+```
+kubectl get pods
+```
+
+10. Deploy Apache Spark on the Kubernetes cluster using the Bitnami Apache Spark Helm chart and supply it with the configuration file above
+```
+helm repo add bitnami https://charts.bitnami.com/bitnami
+```
+
+11. Deploy Apache Spark on the Kubernetes cluster using the Bitnami Apache Spark Helm chart and supply it with the configuration file above(cont)
+```
+helm install spark bitnami/spark -f spark-chart.yaml
+```
+
+Notice:
+```
+kubectl run --namespace default spark-client --rm --tty -i --restart='Never' \
+    --image docker.io/bitnami/spark:3.4.1-debian-11-r0 \
+    -- spark-submit --master spark://$SUBMIT_IP:7077 \
+    --deploy-mode cluster \
+    --class org.apache.spark.examples.SparkPi \
+    $EXAMPLE_JAR 1000
+```
+
+12. Get the external IP of the running pod
+```
+kubectl get svc -l "app.kubernetes.io/instance=spark,app.kubernetes.io/name=spark"
+```
+
+13. Open the external ip on your browser
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/kubernetes/img/10.png" width=70% height =70%>
+
+14. Word Count on Spark
 Submit a word count task :
 ```
 kubectl run --namespace default spark-client --rm --tty -i --restart=Never \
@@ -43,7 +120,15 @@ kubectl run --namespace default spark-client --rm --tty -i --restart=Never \
 ```
 <img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/kubernetes/img/5.png" width=70% height =70%>
 
-3. Execute this pod and see the result of the finished tasks
+15. And on your browser, you should see this task finished
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/kubernetes/img/9.png" width=70% height =70%>
+
+16. Get the name of the worker node
+```
+kubectl get pods -o wide | grep WORKER-NODE-ADDRESS
+```
+
+17. Execute this pod and see the result of the finished tasks
 ```
 kubectl exec -it spark-worker-2 -- bash
 cd /opt/bitnami/spark/work
@@ -66,7 +151,9 @@ cd /opt/bitnami/spark/examples/src/main/python
 <img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/kubernetes/img/7.png" width=70% height =70%>
 
 3. Run the page rank using pyspark
+```
 spark-submit pagerank.py /opt 2
+```
 
 Note, /opt is an example directory and 2 is the number of iterations you want the page rank to run, we can also change to any numbers, here is my output of running the page rank for directory /opt with 2 iterations
 
