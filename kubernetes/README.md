@@ -1,102 +1,79 @@
 Detail Design Presentation：
 
-https://docs.google.com/presentation/d/1CGREG54TSDyRQ-znUhiAjLerNN9gaBI87cO2LgbNarM/edit?pli=1#slide=id.g2504991d7a9_0_220
+https://docs.google.com/presentation/d/1vflrMCb8hRtE_djdZ1C8H3HqFNXLkRHHcCUSBdTLa5I/edit?pli=1#slide=id.gcd7411e2d9_0_47
 
 Design:
 
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/4.png" width=30% height =30%>
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/kubernetes/img/1.png" width=30% height =30%>
 
-Initialize each page’s rank to 1.0
-On each iteration, have page p send a contribution of rank(p) / numNeighbors(p) to its neighbors (the pages it has links to).
-Set each page’s rank to 0.15 + 0.85 * contributionsReceived.
-Note:
-0.85 is the damping factor
+Node and Pods:
+A pod is a set of co-located containers
+Created by a declarative specification supplied to the master
+Each pod has its own IP address
+Volumes can be local or network -attached 
 
-Calculation:
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/kubernetes/img/2.png" width=30% height =30%>
 
-First iteration
+Why spark on Kubernetes:
+Docker and container Ecosystem 
+Kubernetes
+- Lots of addon services: third party logging, monitoring, and security tools
+Resources sharing between batch, serving and stateful workloads
+- Streamlined developer experience 
+- Reduced operational cost 
+- Improved infrastructure utilization
+
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/kubernetes/img/3.png" width=30% height =30%>
+
+Spark-Submit can be directly used to submit a Spark application to a Kubernetes cluster. The submission mechanism works as follows: Spark creates a Spark driver running within a Kubernetes pod.The driver creates executors which are also running within Kubernetes pods and connects to them, and executes application code.When the application completes, the executor pods terminate and are cleaned up, but the driver pod persists logs and remains in “completed” state in the Kubernetes API until it’s eventually garbage collected or manually cleaned up.The driver and executor pod scheduling is handled by Kubernetes. Communication to the Kubernetes API is done via fabric8. It is possible to schedule the driver and executor pods on a subset of available nodes through a node selector using the configuration property for it
+
+
+Wordcount running on spark, deploying to kubernetes on GKE:
+1. Create a cluster on GKE with
 ```
-PR(A)=(1-d)+d *PR(C)=1-0.85+0.85*1=1
-PR(B)=(1-d)+d *PR(A)/2=1-0.85+0.85*1/2=0.575
-PR(C)=(1-d)+d *(PR(A)/2+PR(B))=1-0.85+0.85*(1/2+1)=1.425
+gcloud container clusters create spark --num-nodes=1 --machine-type=e2-highmem-2 --region=us-central1
 ```
-Second iteration
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/kubernetes/img/4.png" width=30% height =30%>
+
+2. Word Count on Spark
+Submit a word count task :
 ```
-PR(A)=(1-d)+d *PR(C)=1-0.85+0.85*1.425=1.36125
-PR(B)=(1-d)+d *PR(A)/2=1-0.85+0.85*1/2=0.575
-PR(C)=(1-d)+d *(PR(A)/2+PR(B))=1-0.85+0.85*(1/2+0.575)=1.06375
+kubectl run --namespace default spark-client --rm --tty -i --restart=Never \
+  --image=docker.io/bitnami/spark:3.4.1-debian-11-r0 \
+  -- spark-submit --master spark://34.31.125.126:7077 --deploy-mode cluster \
+  --class org.apache.spark.examples.JavaWordCount \
+  /data/my.jar /data/test.txt
 ```
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/kubernetes/img/5.png" width=30% height =30%>
 
-Pyspark - using GCP dataproc and hdfs:
-1. Ssh login the dataproc cluster server.
-2. Upload a txt file to show the references among the nodes.
-
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/5.png" width=40% height =40%>
-
-3. copy the file into hdfs:///mydata
+3. Execute this pod and see the result of the finished tasks
 ```
-$ hdfs dfs -mkdir hdfs:///mydata
-$ hdfs dfs -put pageranktxt.txt hdfs:///mydata
-$ hdfs dfs -ls hdfs:///mydata
+kubectl exec -it spark-worker-2 -- bash
+cd /opt/bitnami/spark/work
+cat submissionID/stdout
 ```
-4. Upload the pagerank.py
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/kubernetes/img/6.png" width=30% height =30%>
 
-5. Run:
 
-For the 1st iteration it is:
+Running python PageRank onPySpark on the pods:
+
+1. Execute the spark master pods
 ```
-$ spark-submit --master yarn --deploy-mode cluster --py-files pagerank.py pagerank.py hdfs:///mydata/pageranktxt.txt 1 hdfs:///mydata/output/1
-$  hdfs dfs -cat hdfs:///mydata/output/1/*
-```
-
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/7.png" width=50% height =50%>
-
-For the 2nd iteration it is:
-```
-$ spark-submit --master yarn --deploy-mode cluster --py-files pagerank.py pagerank.py hdfs:///mydata/pageranktxt.txt 2 hdfs:///mydata/output/2
-$ hdfs dfs -cat hdfs:///mydata/output/2/*
-```
-
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/6.png" width=50% height =50%>
-
-
-Scala-Using dataproc and hdfs:
-
-1. Scala-install scala and sbt:
-using the Scala REPL (Read-Evaluate-Print-Loop or interactive interpreter)
-
-2. Set the SCALA_HOME environment variable
-3. Check sbt version
-
-4. Create directory structure:
-
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/3.png" width=50% height =50%>
-
-5. Compile:
-```
-$ sbt package
-```
-6. Download spark
-
-7. Put pageranktxt.txt file into hdfs:
-```
-$ hdfs dfs -put pageranktxt.txt /user/czhao322
-$ hdfs dfs -ls
-```
-8. Run:
-For the 1st iteration it is:
-```
-$ spark-submit --class org.apache.spark.examples.SparkPageRank --master local[4] /home/czhao322/target/scala-2.12/pagerank-project_2.12-1.0.jar pagerank.txt 1
+kubectl exec -it spark-master-0 -- bash
 ```
 
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/8.png" width=50% height =50%>
-
-For the 2nd iteration it is:
+2. Go to the directory where pagerank.py located
 ```
-$ spark-submit --class org.apache.spark.examples.SparkPageRank --master local[4] /home/czhao322/target/scala-2.12/pagerank-project_2.12-1.0.jar pagerank.txt 2
+cd /opt/bitnami/spark/examples/src/main/python
 ```
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/kubernetes/img/7.png" width=30% height =30%>
 
-<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/spark/pagerank/img/9.png" width=30% height =30%>
+3. Run the page rank using pyspark
+spark-submit pagerank.py /opt 2
+
+Note, /opt is an example directory and 2 is the number of iterations you want the page rank to run, we can also change to any numbers, here is my output of running the page rank for directory /opt with 2 iterations
+
+<img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/kubernetes/img/8.png" width=30% height =30%>
 
 
 
