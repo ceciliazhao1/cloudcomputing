@@ -6,7 +6,7 @@ Design:
 
 <img src="https://github.com/ceciliazhao1/cloudcomputing/blob/main/kubernetes/img/1.png" width=30% height =30%>
 
-Spark on Kubernetes 
+Spark on Kubernetes:  
 When you submit a Spark application, you talk directly to Kubernetes, the API server, which will schedule the driver pod, so the Spark driver container and then the Spark driver and the Kubernetes Cluster will talk to each other to request and launch Spark executors, which will also be scheduled on pods (one pod per executor). If dynamic allocation is enabled the number of Spark executors dynamically evolves based on load, otherwise it’s a static number.
 In this project, with the help of  PySpark (which is an open-source cluster-computing framework)  we want to  implement Word Count on Apache Spark running on Kubernetes and Using PySpark to implement PageRank on Apache Spark running on Kubernetes.
 
