@@ -1,7 +1,7 @@
 # Movie Recommendation system
 
 
-**[Movie Recommendation system Google Slides](https://docs.google.com/presentation/d/1Bm1x5WRxM4nd2nwazsE5S-8ZJUpw5Di39ZobLhlzMB0/edit?usp=sharing)**
+**[Movie Recommendation system Google Slides](https://docs.google.com/presentation/d/13ihkTx-jcdRXOkXUiaDQZfB0-LuPQd3Q9uktj-8AKds/edit#slide=id.p)**
 
 
 ## Introduction
