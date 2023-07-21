@@ -1,7 +1,7 @@
 # Movie Recommendation system
 
 
-**[Movie Recommendation system Google Slides](https://docs.google.com/presentation/d/1Bm1x5WRxM4nd2nwazsE5S-8ZJUpw5Di39ZobLhlzMB0/edit?usp=sharing)**
+**[Movie Recommendation system Google Slides](https://docs.google.com/presentation/d/1EK3W5Z6-JsIT54kWeN4PkH5EE4x0bGdsXbtAG0JlYpo/edit#slide=id.p)**
 
 
 ## Introduction
@@ -28,7 +28,7 @@ The general approach is iterative. During each iteration, one of the factor matr
 
 ### Google Colab
 
-**[Detailed steps of execute on Google Colab](https://github.com/SharonCao0920/CloudComputing/blob/main/Machine_Learning/Movie_Recommendation_System/Movie_Recommendation_System.ipynb)**
+**[Detailed steps of execute on Google Colab](https://github.com/ceciliazhao1/cloudcomputing/blob/main/machine%20learning/Movie%20Recommendation%20System/implementation3/Recommendation_Engine_MovieLens.ipynb)**
 
 ## Test
 
@@ -36,37 +36,49 @@ The general approach is iterative. During each iteration, one of the factor matr
 
 * Download .py file from Colab
 
-* Create cluster on GCP and open VM through SSH
+* Create instance on GCP and open VM through SSH
 
 * Upload .txt data files and .py source file to GCP
 
 ![My Image](./image/upload.png)
 
-* Create directory in hdfs file system
-```
-$ hdfs dfs -mkdir hdfs:///data
-```
-   
-* Modify paths in the source code 
+* 
 
+
+* Install pyspark:
 ```
-$ hdfs dfs -put ./data/mllib/* hdfs:///data/mllib
+sudo apt install python3-pip
+sudo pip3 install pyspark
+pyspark --version
 ```
-![My Image](./image/path.png)
+
+* Install java
+```
+java -version
+sudo apt install openjdk-8-jre-headless  
+sudo update-alternatives 
+export JAVA_HOME=/path/to/java/installation/directory
+source ~/.bashrc 
+echo $JAVA_HOME
+```
+![My Image](./image/pandas.png)
+
+* Install pandas
+```
+sudo -H pip3 install pandas
+```
 
 *  Execute .py source code
 
 ```
-$ spark-submit xxx.py
+$ python3 movie_recommendation_GCP.py
 ```
 
-or
+![My Image](./image/1.png)
+![My Image](./image/2.png)
+![My Image](./image/3.png)
+![My Image](./image/4.png)
 
-```
-$ python xxx.py
-```
-
-![My Image](./image/execute.png)
 
 
 ## Enhancement
