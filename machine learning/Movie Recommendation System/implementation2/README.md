@@ -35,7 +35,6 @@ sudo apt install python3-pip
 sudo pip3 install pyspark
 pyspark --version
 ```
-![My Image](./image/1.png)
 ![My Image](./image/2.png)
 
 2. Install java
