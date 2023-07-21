@@ -21,8 +21,6 @@ The two widely used approaches for building a recommender System are:
 Recommendation using Alternating Least Squares (ALS)
 The general approach is iterative. During each iteration, one of the factor matrices is held constant, while the other is solved for using least squares. 
 
-* Modify the provided code and implement on Google Colab 
-* Download the file from Google Colab and test on Google Cloud Platform
 
 ## Implementation
 
@@ -35,7 +33,6 @@ sudo apt install python3-pip
 sudo pip3 install pyspark
 pyspark --version
 ```
-![My Image](./image/1.png)
 ![My Image](./image/2.png)
 
 2. Install java
