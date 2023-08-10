@@ -16,14 +16,16 @@ Three primary concerns in Real-time data ingesting are:
 **[Quick Start](https://kafka.apache.org/quickstart)**
 
 ### Step 1: Get Kafka
+```
+wget https://downloads.apache.org/kafka/3.3.1/kafka_2.13-3.3.1.tgz
 
+```
 [Download](https://kafka.apache.org/downloads) the latest Kafka release and extract it:
-![My Image](./image/kafka/download.png)
+
 ```
 $ tar -xzf kafka_2.13-3.3.1.tgz
 $ cd kafka_2.13-3.3.1
 ``` 
-![My Image](./image/kafka/unpack.png)
 
 ### Step 2: Start the Kafka Environment
 *NOTE: Your local environment must have Java 8+ installed.*
@@ -36,7 +38,7 @@ $ bin/zookeeper-server-start.sh config/zookeeper.properties
 ![My Image](./image/kafka/zookeeper1.png)
 
 ##### Start the Kafka broker service
-*Open another terminal session and run:*
+*Open another terminal session and run:*34r
 ```
 $ bin/kafka-server-start.sh config/server.properties
 ```
