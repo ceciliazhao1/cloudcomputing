@@ -17,7 +17,7 @@ Three primary concerns in Real-time data ingesting are:
 
 ### Step 1: Get Kafka
 ```
-wget https://downloads.apache.org/kafka/3.3.1/kafka_2.13-3.3.1.tgz
+$ wget https://downloads.apache.org/kafka/3.3.1/kafka_2.13-3.3.1.tgz
 
 ```
 [Download](https://kafka.apache.org/downloads) the latest Kafka release and extract it:
